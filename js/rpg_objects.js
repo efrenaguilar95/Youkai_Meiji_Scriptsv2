@@ -10440,7 +10440,7 @@ Game_Interpreter.prototype.command355 = function() {
 
 // Plugin Command
 Game_Interpreter.prototype.command356 = function() {
-    var args = this._params[0].split(" ");
+    var args = this._params[0].split("_");
     var command = args.shift();
     this.pluginCommand(command, args);
     return true;

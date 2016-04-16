@@ -9,12 +9,12 @@
  *
  *
  * @param Option 1
- * @desc The first option to choose from
+ * @desc The default first option to choose from
  * @default Yes
  *
  *
  * @param Option 2
- * @desc The second option to choose from
+ * @desc The default second option to choose from
  * @default No
  *
  * @help This plugin should be put in just like any other event. 
@@ -45,6 +45,9 @@ Game_Interpreter.prototype.pluginCommand = function(command, args)
 {
     choiceClockCommand.call(this, command, args);
 
+    var option1 = args[0] || parameters["Option 1"];
+    var option2 = args[1] || parameters["Option 2"];
+
     if(command == 'startChoiceTimer')
     {
         $gameMessage.setChoiceCallback(displayChoice);
@@ -52,7 +55,7 @@ Game_Interpreter.prototype.pluginCommand = function(command, args)
         $gameMessage.add('HALT!');
         $gameMessage.newPage();
         $gameMessage.add('IT IS TIME TO MAKE A CHOICE!');
-        $gameMessage.setChoices(['YES', 'NO'], 0, 0);
+        $gameMessage.setChoices([option1, option2], 0, 0);
     }
 
 }
