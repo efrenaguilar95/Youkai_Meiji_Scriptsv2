@@ -4,5 +4,6 @@ var $plugins =
 [
 {"name":"PluginOfSkippingTitle","status":true,"description":"This plugin is for skipping SENSEI!","parameters":{"Sensei Title Return?":"yes"}},
 {"name":"HappySensei","status":true,"description":"This plugin is for getting a happy SENSEI","parameters":{"Harold profile":"I am Saitama, a hero for fun."}},
-{"name":"ChoiceClock","status":true,"description":"This plugin displays a dialogue choice along with a timer that counts down how much time is left to make a choice.","parameters":{"Countdown Timer":"15","Option 1":"Yes","Option 2":"No"}}
+{"name":"ChoiceClock","status":true,"description":"This plugin displays a dialogue choice along with a timer that counts down how much time is left to make a choice.","parameters":{"Countdown Timer":"15","Option 1":"Yes","Option 2":"No"}},
+{"name":"ChoiceClock2","status":true,"description":"This plugin displays a dialogue choice along with a timer that counts down how much time is left to make a choice.","parameters":{"Countdown Timer":"15"}}
 ];

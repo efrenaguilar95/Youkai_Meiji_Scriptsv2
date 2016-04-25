@@ -37,6 +37,11 @@ function displayChoice(choice)
 
 
 var choiceClockCommand = Game_Interpreter.prototype.pluginCommand;
+var choiceSystem = Game_System.prototype.initialize;
+Game_System.prototype.initialize = function()
+{
+    choiceSystem.call(this);
+}
 
 
 //This code essentially tells the player to make a choice, and calls a function to do something with that choice
