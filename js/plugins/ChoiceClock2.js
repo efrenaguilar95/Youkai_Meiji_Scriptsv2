@@ -40,7 +40,7 @@
 	 //Overwriting built in functions
 	 Window_ChoiceList.prototype.textHeight = Window_ChoiceList.prototype.lineHeight;
 	 Naruske.clock.Window_ChoiceList_lineHeight = Window_ChoiceList.prototype.lineHeight;
-	 Window_ChoiceList.prototype.lineHeight = function() {return $gameSystem.clockChoices ? 250 : Naruske.clock.Window_ChoiceList_lineHeight.call(this);};
+	 //Window_ChoiceList.prototype.lineHeight = function() {return $gameSystem.clockChoices ? 250 : Naruske.clock.Window_ChoiceList_lineHeight.call(this);};
 
 
 	 Window_ChoiceList.prototype.drawButton = function(index, y, cursor){
@@ -59,10 +59,10 @@
 	 {
 	 	if($gameSystem.clockChoices)
 	 	{
-	 		var rect = this.itemRectForText(index);
-	 		this.drawButton(index, rect.y);
-	 		if(index == this._index) this.drawButton(index, rect.y, true);	//places the highlight over the highlighted text
-	 		var offset = (this.lineHeight() - this.textHeight()) * 0.5;
+	 	 	var rect = this.itemRectForText(index);
+	 	// 	this.drawButton(index, rect.y);
+	 	// 	if(index == this._index) this.drawButton(index, rect.y, true);	//places the highlight over the highlighted text
+	 	 	var offset = (this.lineHeight() - this.textHeight()) * 0.5;
 			this.drawTextEx(this.commandName(index), rect.x, rect.y + offset);
 	 	}
 	 	else
@@ -71,6 +71,17 @@
 	 	};
 	 };
 
+	Window_ChoiceList.prototype.maxCols = function() {
+ 	if($gameSystem.clockChoices)
+ 	{
+ 		return 2;
+ 	}
+ 	else
+ 	{
+ 		return 1;
+ 	}
+};
+
 	 Naruske.clock.Window_ChoiceList_updatePlacement = Window_ChoiceList.prototype.updatePlacement;
 	 Window_ChoiceList.prototype.updatePlacement = function()
 	 {
@@ -78,16 +89,16 @@
 	 	{
 	 		this.width = Graphics.boxWidth;
     		this.height = Graphics.boxHeight;
-    		this.x = 0;
+    		this.y = (Graphics.boxHeight/2) - this.textHeight();
     		var messageY = this._messageWindow.y;
-    		if (messageY >= Graphics.boxHeight / 2) 
-    		{
-     		   this.y = 0;
-    		} 
-    		else 
-    		{
-        		this.y = 0;
-    		};
+    		// if (messageY >= Graphics.boxHeight / 2) 
+    		// {
+     	// 	   this.y = 0;
+    		// } 
+    		// else 
+    		// {
+      //   		this.y = 0;
+    		// };
 	 	}
 	 	else
 	 	{
