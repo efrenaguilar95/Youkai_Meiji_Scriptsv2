@@ -155,4 +155,50 @@
 	 	};
 	 };
 
+	// Naruske.clock.Window_ChoiceList_select = Window_ChoiceList.prototype.select;
+	// Window_ChoiceList.prototype.select = function(index)
+	// {
+	// 	if($gameSystem.clockChoices && this.active ==true)
+	// 	{
+	// 		 this._index = index;
+	// 	     this._stayCount = 0;
+	// 	     this.ensureCursorVisible();
+	// 	     this.updateCursor();
+	// 	     this.callUpdateHelp();
+	// 		 this.playOkSound();
+ //        	 this.updateInputData();
+ //       		 this.deactivate();
+ //        	 this.callOkHandler();
+	// 	}
+	// 	else
+	// 	{
+	// 		Naruske.clock.Window_ChoiceList_select.call(this, index);
+	// 	}
+	// }
+
+	Naruske.clock.Window_ChoiceList_processCursorMove = Window_ChoiceList.prototype.processCursorMove;
+	Window_ChoiceList.prototype.select = function()
+	{
+		if($gameSystem.clockChoices && this.active ==true)
+		{
+			if (this.isCursorMovable()) 
+			{
+		        var lastIndex = this.index();
+		        if (Input.isPressed('left'))
+		            this._index = 0;
+		        if (Input.isPressed('right'))
+		            this._index = 1;
+		        this.processOk();
+		        // this.playOkSound();
+		        // this.updateInputData();
+		        // this.deactivate();
+		        // this.callOkHandler();
+		   }
+		}
+		else
+		{
+			Naruske.clock.Window_ChoiceList_processCursorMove.call(this);
+		}
+	}
+
 })();
