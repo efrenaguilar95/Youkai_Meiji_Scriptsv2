@@ -89,6 +89,7 @@
 	 	{
 	 		this.width = Graphics.boxWidth;
     		this.height = Graphics.boxHeight;
+    		this.x = 0;
     		this.y = (Graphics.boxHeight/2) - this.textHeight();
     		var messageY = this._messageWindow.y;
     		// if (messageY >= Graphics.boxHeight / 2) 
@@ -119,7 +120,7 @@
 		 this.ChoiceSprites = [];
 		 this.choice_background = [];
 		 this._vnIndex = this._index;
-    	 if ($gameSystem.vnChoices) 
+    	 if ($gameSystem.clockChoices) 
     	 {
       		 this.opacity = 0;
 		 } 
@@ -148,6 +149,7 @@
 	 	{
 	 		this._background = 2;
 	 		this.setBackgroundType(this._background);
+	 		this._windowCursorSprite.opacity = 0;
 	 	}
 	 	else
 	 	{
@@ -155,26 +157,6 @@
 	 	};
 	 };
 
-	// Naruske.clock.Window_ChoiceList_select = Window_ChoiceList.prototype.select;
-	// Window_ChoiceList.prototype.select = function(index)
-	// {
-	// 	if($gameSystem.clockChoices && this.active ==true)
-	// 	{
-	// 		 this._index = index;
-	// 	     this._stayCount = 0;
-	// 	     this.ensureCursorVisible();
-	// 	     this.updateCursor();
-	// 	     this.callUpdateHelp();
-	// 		 this.playOkSound();
- //        	 this.updateInputData();
- //       		 this.deactivate();
- //        	 this.callOkHandler();
-	// 	}
-	// 	else
-	// 	{
-	// 		Naruske.clock.Window_ChoiceList_select.call(this, index);
-	// 	}
-	// }
 
 	Naruske.clock.Window_ChoiceList_processCursorMove = Window_ChoiceList.prototype.processCursorMove;
 	Window_ChoiceList.prototype.processCursorMove = function()
@@ -194,10 +176,6 @@
 		            this._index = 1;
 		            this.processOk();
 		        }
-		        // this.playOkSound();
-		        // this.updateInputData();
-		        // this.deactivate();
-		        // this.callOkHandler();
 		   }
 		}
 		else
@@ -208,10 +186,10 @@
 
 	Naruske.clock.Window_ChoiceList_refreshCursor = Window_ChoiceList.prototype._refreshCursor;
 	Window_ChoiceList.prototype._refreshCursor = function() {
-	if ($gameSystem.clockChoices) {
+	if ($gameSystem.clockChoices) {	
 		this._windowCursorSprite.opacity = 0;
 	} else {
-		Galv.VNC.Window_ChoiceList_refreshCursor.call(this);
+		Naruske.clock.Window_ChoiceList_refreshCursor.call(this);
 	};
 };
 
