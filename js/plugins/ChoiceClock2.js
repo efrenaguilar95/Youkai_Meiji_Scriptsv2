@@ -177,7 +177,7 @@
 	// }
 
 	Naruske.clock.Window_ChoiceList_processCursorMove = Window_ChoiceList.prototype.processCursorMove;
-	Window_ChoiceList.prototype.select = function()
+	Window_ChoiceList.prototype.processCursorMove = function()
 	{
 		if($gameSystem.clockChoices && this.active ==true)
 		{
@@ -185,10 +185,15 @@
 			{
 		        var lastIndex = this.index();
 		        if (Input.isPressed('left'))
+		        {
 		            this._index = 0;
+		            this.processOk();
+		        }
 		        if (Input.isPressed('right'))
+		        {
 		            this._index = 1;
-		        this.processOk();
+		            this.processOk();
+		        }
 		        // this.playOkSound();
 		        // this.updateInputData();
 		        // this.deactivate();
@@ -200,5 +205,14 @@
 			Naruske.clock.Window_ChoiceList_processCursorMove.call(this);
 		}
 	}
+
+	Naruske.clock.Window_ChoiceList_refreshCursor = Window_ChoiceList.prototype._refreshCursor;
+	Window_ChoiceList.prototype._refreshCursor = function() {
+	if ($gameSystem.clockChoices) {
+		this._windowCursorSprite.opacity = 0;
+	} else {
+		Galv.VNC.Window_ChoiceList_refreshCursor.call(this);
+	};
+};
 
 })();
